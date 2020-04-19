@@ -44,34 +44,32 @@
 
 
 // ----------- STATUS DEFINE ------------
-#define SWI2C_STATUS_OK			1
-#define SWI2C_STATUS_FAIL			-1
+#define SWI2C_STATUS_OK			(1)
+#define SWI2C_STATUS_FAIL		(-1)
 // ----------- STATUS DEFINE ------------
 
 // ----------- PROTOCOL DEFINE ------------
-#define WRITE_BIT					0
-#define READ_BIT					1
-#define MASTER_ACK					1
-#define MASTER_NACK				0
+#define WRITE_BIT					(0)
+#define READ_BIT					(1)
+#define MASTER_ACK				(1)
+#define MASTER_NACK				(0)
 // ----------- PROTOCOL DEFINE ------------
 
 
-
 //--------------------------------------------------------------------------------------------------
-// write ONE data :
+// Stop I2C bus hanging
 // parameter:
 //				N/A
 //  ex:
-//				if Read / Write Fail , try this function to stop hang!
-//				After use this function , the i2c bus still hang -> maybe slave device pull low. Not the host device error!!
+//				if Read / Write Fail , try this function to stop I2C bus hang!
+//				After use this function , the I2C bus still hang 
+//				-> maybe slave device pull low the SCL line. It's not the host device error!!
 //		
 void i2c_stop_hang(void);
 //--------------------------------------------------------------------------------------------------
 
-
-//*********************************** one - address & one - register address *********************************
 //--------------------------------------------------------------------------------------------------
-// write ONE data :
+// write one data
 // parameter:
 //				1.slave_address : the i2c slave id
 //				2.register_address : write register address
@@ -82,8 +80,9 @@ void i2c_stop_hang(void);
 //			data : 0xAA
 CHAR8S i2c_write_1_byte_data(CHAR8U slave_address,CHAR8U register_address,CHAR8U data);
 //--------------------------------------------------------------------------------------------------
+
 //--------------------------------------------------------------------------------------------------
-// Continue write data :
+// Continue write n-bytes data :
 // parameter:
 //				1.slave_address : the i2c slave id
 //				2.start_reg_addr : start write register address
@@ -96,6 +95,7 @@ CHAR8S i2c_write_1_byte_data(CHAR8U slave_address,CHAR8U register_address,CHAR8U
 //			*data_stream = &a[0] ;      a[4]={0x13,0x26,0xAE,0x64};
 CHAR8S i2c_write_n_byte_data(CHAR8U slave_address,CHAR8U start_reg_addr,CHAR8U n_byte,CHAR8U *w_data_stream);
 //--------------------------------------------------------------------------------------------------
+
 //--------------------------------------------------------------------------------------------------
 // read ONE data :
 // parameter:
@@ -108,6 +108,7 @@ CHAR8S i2c_write_n_byte_data(CHAR8U slave_address,CHAR8U start_reg_addr,CHAR8U n
 //			*data ->  ex: CHAR8U temperature_data ; * data = &temperature_data;
 CHAR8S i2c_read_1_byte_data(CHAR8U slave_address,CHAR8U register_address,CHAR8U *data);
 //--------------------------------------------------------------------------------------------------
+
 //--------------------------------------------------------------------------------------------------
 // Continue read data :
 // parameter:
@@ -122,13 +123,7 @@ CHAR8S i2c_read_1_byte_data(CHAR8U slave_address,CHAR8U register_address,CHAR8U 
 //			*data_stream = &a[0] ;      a[4]={0,0,0,0};// ready to read data.
 CHAR8S i2c_read_n_byte_data(CHAR8U slave_address,CHAR8U start_reg_addr,CHAR8U n_byte,CHAR8U *r_data_stream);
 //--------------------------------------------------------------------------------------------------
-//*********************************** one - address & one - register address *********************************
 
-
-
-
-
-//*********************************** one - address & two - register address *********************************
 //--------------------------------------------------------------------------------------------------
 // write ONE data :
 // parameter:
@@ -143,6 +138,7 @@ CHAR8S i2c_read_n_byte_data(CHAR8U slave_address,CHAR8U start_reg_addr,CHAR8U n_
 //			data : 0xAA
 CHAR8S i2c_write_1_byte_data_two_reg_addr(CHAR8U slave_address,CHAR8U reg_high_addr,CHAR8U reg_low_addr,CHAR8U data);
 //--------------------------------------------------------------------------------------------------
+
 //--------------------------------------------------------------------------------------------------
 // Continue write data :
 // parameter:
@@ -159,6 +155,7 @@ CHAR8S i2c_write_1_byte_data_two_reg_addr(CHAR8U slave_address,CHAR8U reg_high_a
 //			*data_stream = &a[0] ;      a[4]={0x13,0x26,0xAE,0x64};
 CHAR8S i2c_write_n_byte_data_two_reg_addr(CHAR8U slave_address,CHAR8U reg_high_addr,CHAR8U reg_low_addr,CHAR8U n_byte,CHAR8U *w_data_stream);
 //--------------------------------------------------------------------------------------------------
+
 //--------------------------------------------------------------------------------------------------
 // read ONE data :
 // parameter:
@@ -173,6 +170,7 @@ CHAR8S i2c_write_n_byte_data_two_reg_addr(CHAR8U slave_address,CHAR8U reg_high_a
 //			*data ->  ex: CHAR8U temperature_data ; * data = &temperature_data;
 CHAR8S i2c_read_1_byte_data_two_reg_addr(CHAR8U slave_address,CHAR8U reg_high_addr,CHAR8U reg_low_addr,CHAR8U *data);
 //--------------------------------------------------------------------------------------------------
+
 //--------------------------------------------------------------------------------------------------
 // Continue read data :
 // parameter:
@@ -189,8 +187,6 @@ CHAR8S i2c_read_1_byte_data_two_reg_addr(CHAR8U slave_address,CHAR8U reg_high_ad
 //			*data_stream = &a[0] ;      a[4]={0,0,0,0};// ready to read data.
 CHAR8S i2c_read_n_byte_data_two_reg_addr(CHAR8U slave_address,CHAR8U reg_high_addr,CHAR8U reg_low_addr,CHAR8U n_byte,CHAR8U *r_data_stream);
 //--------------------------------------------------------------------------------------------------
-//*********************************** one - address & two - register address *********************************
-
 
 
 #endif		//#ifndef __PORTING_LAYER_HEADER___ 
