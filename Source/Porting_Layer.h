@@ -37,7 +37,7 @@
 #define  INT16S			int
 #define  INT16U			unsigned int
 #define  INT32S     		long int
-#define  INT32U    		unsigned int
+#define  INT32U    		unsigned long int
 #define  FLOAT     		float
 #define  DOUBLE     		double
 

@@ -26,8 +26,6 @@ Data Stack size         : 512
 
 #include <delay.h>
 #include <math.h>
-
-
 #include <SENSOR_AK09911C.h>
 
 // I2C Bus functions
